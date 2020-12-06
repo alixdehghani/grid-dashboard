@@ -2,6 +2,11 @@
   <nb-card-header>
     <nb-actions size="medium">
       <nb-action>Grid Dashboard</nb-action>
+      <nb-action nbTooltip="Github" nbTooltipPlacement="top">
+        <a href="https://github.com/alixdehghani/grid-dashboard">
+          <nb-icon icon="github-outline"></nb-icon>
+        </a>
+      </nb-action>
       <nb-action nbTooltip="Edit" nbTooltipPlacement="top">
         <nb-icon [icon]="editIcon" status="success" (click)="toggleEditMode()"></nb-icon>
       </nb-action>
@@ -101,7 +106,7 @@
         <input nbInput [(ngModel)]="options.fixedRowHeight" type="number" placeholder="Fixed Row Height"
           (ngModelChange)="changedOptions()" name="f12">
       </form>
-      
+
     </nb-card-body>
   </nb-card>
 </ng-template>
