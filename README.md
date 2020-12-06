@@ -1,3 +1,4 @@
+### Angular implementation of grid-dashboard [Demo](http://grid-dashboard.surge.sh)
 # GridDashboard
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.9.
