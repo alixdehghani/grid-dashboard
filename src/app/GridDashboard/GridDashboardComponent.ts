@@ -99,6 +99,7 @@ export class GridDashboardComponent {
       $event.preventDefault();
       $event.stopPropagation();
       this.widgets.splice(this.widgets.indexOf(item), 1);
+      this.widgets = [...this.widgets];
     }
   
 
