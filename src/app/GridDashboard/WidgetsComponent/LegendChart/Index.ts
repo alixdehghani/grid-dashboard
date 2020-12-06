@@ -1,0 +1,1 @@
+export { ECommerceLegendChartComponent } from './Internal/legend-chart.component';
