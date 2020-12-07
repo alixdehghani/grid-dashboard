@@ -1,4 +1,11 @@
 ### Angular implementation of grid-dashboard [Demo](http://grid-dashboard.surge.sh)
+
+Used [Nebular](https://github.com/akveo/nebular) for UI framework.
+
+For basic grid-dashboard I used [angular-gridster2](https://github.com/tiberiuzuld/angular-gridster2)
+
+I add resizable, draggable and load dynamic components features for grid-dashbord.
+
 # GridDashboard
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.9.
