@@ -1,0 +1,1 @@
+export { Module as ThemeSwitcherModule } from './Internal/Module';
