@@ -1,0 +1,17 @@
+@import "../../Theme/themes.scss";
+
+@include nb-install-component() {
+    gridster {
+        background: nb-theme(color-basic-500);
+    }
+}
+
+.grid-dashbord {
+    &__item-header {
+        display: flex;
+        justify-content: space-between;
+        nb-icon {
+            cursor: pointer;
+        }
+    }
+}

@@ -1,0 +1,118 @@
+<nb-card size="large">
+  <nb-card-header>
+    <nb-actions size="medium">
+      <nb-action>Grid Dashboard</nb-action>
+      <nb-action nbTooltip="Github" nbTooltipPlacement="top">
+        <a href="https://github.com/alixdehghani/grid-dashboard">
+          <nb-icon icon="github-outline"></nb-icon>
+        </a>
+      </nb-action>
+      <nb-action nbTooltip="Edit" nbTooltipPlacement="top">
+        <nb-icon [icon]="editIcon" status="success" (click)="toggleEditMode()"></nb-icon>
+      </nb-action>
+      <nb-action nbTooltip="Setting" nbTooltipPlacement="top">
+        <nb-icon icon="settings-2-outline" [nbPopover]="Setting" nbPopoverPlacement="bottom"></nb-icon>
+      </nb-action>
+      <nb-action>
+        <nb-select multiple placeholder="Select Widgets" [(ngModel)]="widgets">
+          <nb-option *ngFor="let op of selecOptions" [value]="op.value">{{op.label}}</nb-option>
+        </nb-select>
+      </nb-action>
+      <!-- <nb-action nbTooltip="Add Notebook" nbTooltipPlacement="top">
+        <button nbButton (click)="addNotebook()"><nb-icon icon="file-add-outline"></nb-icon></button>
+      </nb-action> -->
+      <nb-action>
+        <app-theme-switcher></app-theme-switcher>
+      </nb-action>
+    </nb-actions>
+  </nb-card-header>
+  <nb-card-body>
+    <gridster [options]="options" class="grid-dashbord">
+      <gridster-item *ngFor="let item of widgets" [item]="item">
+        <nb-card class="grid-dashbord__item">
+          <nb-card-header class="grid-dashbord__item-header">
+            <nb-icon icon="trash-2-outline" status="danger" (mousedown)="removeItem($event, item)" nbTooltip="Delete"
+              nbTooltipPlacement="top" nbTooltipStatus="danger" status="danger" (touchstart)="removeItem($event, item)">
+            </nb-icon>
+            <span>{{item.title}}</span>
+          </nb-card-header>
+          <nb-card-body>
+            <app-widget-selector [name]="item.name"></app-widget-selector>
+          </nb-card-body>
+        </nb-card>
+      </gridster-item>
+    </gridster>
+  </nb-card-body>
+</nb-card>
+
+
+<ng-template #Setting>
+  <nb-card class="options-header">
+    <nb-card-header>Setting</nb-card-header>
+    <nb-card-body>
+      <form>
+        <label for="f1">Grid Type: </label>
+        <nb-select aria-label="Grid type" [(ngModel)]="options.gridType" (ngModelChange)="changedOptions()" name="f1"
+          placeholder="Grid Type">
+          <nb-option value="fit">Fit to screen</nb-option>
+          <nb-option value="scrollVertical">Scroll Vertical</nb-option>
+          <nb-option value="scrollHorizontal">Scroll Horizontal</nb-option>
+          <nb-option value="fixed">Fixed</nb-option>
+          <nb-option value="verticalFixed">Vertical Fixed</nb-option>
+          <nb-option value="horizontalFixed">Horizontal Fixed</nb-option>
+        </nb-select>
+      </form>
+      <form>
+        <label for="f2">Display Grid Lines: </label>
+        <nb-select aria-label="Display grid lines" [(ngModel)]="options.displayGrid" placeholder="Display grid lines"
+          (ngModelChange)="changedOptions()" name="f2">
+          <nb-option value="always">Always</nb-option>
+          <nb-option value="onDrag&Resize">On Drag & Resize</nb-option>
+          <nb-option value="none">None</nb-option>
+        </nb-select>
+      </form>
+
+      <nb-checkbox [(ngModel)]="options.swap" (ngModelChange)="changedOptions()" name="f3">
+        Swap Items
+      </nb-checkbox>
+      <nb-checkbox [(ngModel)]="options.pushItems" (ngModelChange)="changedOptions()" name="f4">
+        Push Items
+      </nb-checkbox>
+      <nb-checkbox [(ngModel)]="options.draggable.enabled" *ngIf="options.draggable" (ngModelChange)="changedOptions()"
+        name="f5">
+        Drag Items
+      </nb-checkbox>
+      <nb-checkbox [(ngModel)]="options.resizable.enabled" *ngIf="options.resizable" (ngModelChange)="changedOptions()"
+        name="f6">
+        Resize Items
+      </nb-checkbox>
+      <nb-checkbox [(ngModel)]="options.pushResizeItems" (ngModelChange)="changedOptions()" name="f7">
+        Push Resize Items
+      </nb-checkbox>
+      <form>
+        <label for="f8">Margin: </label>
+        <input nbInput [(ngModel)]="options.margin" min="0" max="30" step="1" type="number" placeholder="Margin"
+          name="f8" (ngModelChange)="changedOptions()">
+      </form>
+      <nb-checkbox [(ngModel)]="options.outerMargin" (ngModelChange)="changedOptions()" name="f9">Outer Margin
+      </nb-checkbox>
+      <form>
+        <label for="f10">Mobile Breakpoint: </label>
+        <input nbInput [(ngModel)]="options.mobileBreakpoint" type="number" placeholder="Mobile Breakpoint"
+          (ngModelChange)="changedOptions()" name="f10">
+      </form>
+
+      <form>
+        <label for="f11">Fixed Col Width: </label>
+        <input nbInput [(ngModel)]="options.fixedColWidth" type="number" placeholder="Fixed Col Width"
+          (ngModelChange)="changedOptions()" name="f11">
+      </form>
+      <form>
+        <label for="f12">Fixed Row Height: </label>
+        <input nbInput [(ngModel)]="options.fixedRowHeight" type="number" placeholder="Fixed Row Height"
+          (ngModelChange)="changedOptions()" name="f12">
+      </form>
+
+    </nb-card-body>
+  </nb-card>
+</ng-template>
